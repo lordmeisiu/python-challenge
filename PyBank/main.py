@@ -1,9 +1,17 @@
 import os
 import csv
 
-csvfile = os.path.join('.','Resources', 'budget_data.csv') #get csv file path
-csvfile_1 = os.path.join('.', 'analysis', 'analysis.txt') # path for text file
-with open(csvfile_1, 'w') as analysis_output:
+#csvfile = os.path.join(".","Resources","budget_data.csv") #get csv file path
+#csvfile = "C:\\Users\\mcael\\gw\\homework\\03-Python\\python-challenge\\PyBank\\Resources\\budget_data.csv"
+print(os.path.abspath(__file__))
+print(os.path.dirname(os.path.abspath(__file__)))
+path = os.path.dirname(os.path.abspath(__file__))
+csvfile = path + "\\Resources\\budget_data.csv"
+csvfile_1 = path + "\\analysis\\analysis.txt"
+
+#csvfile_1 = os.path.join("","analysis","analysis.txt") # path for text file
+#csvfile_1 = "C:\\Users\\mcael\\gw\\homework\\03-Python\\python-challenge\\PyBank\\analysis\\analysis.txt"
+with open(csvfile_1,'w') as analysis_output:
     with open(csvfile, encoding = 'utf') as budget_csv: #assign variable to csv file
         csvreader = csv.reader(budget_csv, delimiter=",") #read in budget_data and seperate using commas
         print(csvreader)  
@@ -45,18 +53,18 @@ with open(csvfile_1, 'w') as analysis_output:
             m1 = month_1[month_max]
             m2 = month_1[month_min]
 
-            print('analysis')
-            print('------------------------------')
-            print(f'total months: {totalmonthcount}')
-            print(f'total: ${round((totalbudget),)}')
-            print(f'average change: ${profitchange}')
-            print(f'greatest increase in profits: {m1} (${max_num})')
-            print(f'greatest decrease in profits: {m2} (${min_num})')
+    print('analysis')
+    print('------------------------------')
+    print(f'total months: {totalmonthcount}')
+    print(f'total: ${round((totalbudget),)}')
+    print(f'average change: ${profitchange}')
+    print(f'greatest increase in profits: {m1} (${max_num})')
+    print(f'greatest decrease in profits: {m2} (${min_num})')
         
-            out_1 = f'analysis\n------------------------------\ntotal months: {totalmonthcount}'
-            out_2 = f'\ntotal: ${totalbudget}\naverage change: ${profitchange}'
-            out_3 = f'\ngreatest increase in profits: "{m1} (${max_num})\ngreatest decrease in profits: {m2} (${min_num})'
-            analysis_output.write(out_1)
-            analysis_output.write(out_2)
-            analysis_output.write(out_3)
-        analysis_output.close()
+    out_1 = f'analysis\n------------------------------\ntotal months: {totalmonthcount}'
+    out_2 = f'\ntotal: ${totalbudget}\naverage change: ${profitchange}'
+    out_3 = f'\ngreatest increase in profits: {m1} (${max_num})\ngreatest decrease in profits: {m2} (${min_num})'
+    analysis_output.write(out_1)
+    analysis_output.write(out_2)
+    analysis_output.write(out_3)
+analysis_output.close()
